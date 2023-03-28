@@ -298,7 +298,7 @@ class MainWindow(QtWidgets.QMainWindow):
             slot=self.enableSaveImageWithData,
             tip="Save image data in label file",
             checkable=True,
-            checked=self._config["store_data"],
+            checked=False  # self._config["store_data"],
         )
 
         close = action(
@@ -1159,7 +1159,7 @@ class MainWindow(QtWidgets.QMainWindow):
         shape.line_color = QtGui.QColor(r, g, b)
         shape.vertex_fill_color = QtGui.QColor(r, g, b)
         shape.hvertex_fill_color = QtGui.QColor(255, 255, 255)
-        shape.fill_color = QtGui.QColor(r, g, b, 128)
+        shape.fill_color = QtGui.QColor(r, g, b, 0)
         shape.select_line_color = QtGui.QColor(255, 255, 255)
         shape.select_fill_color = QtGui.QColor(r, g, b, 155)
 
@@ -1800,6 +1800,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.close()
         else:
             self._saveFile(self.saveFileDialog())
+        self.close()
 
     def saveFileAs(self, _value=False):
         assert not self.image.isNull(), "cannot save empty image"
